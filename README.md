@@ -1,131 +1,132 @@
-#📘 Assignment 4 – TypeScript (Understanding Document)
-🔷 1. Objective of Assignment
+Assignment 4 - TypeScript
+Objective
 
-The purpose of this assignment is to understand how to:
+The objective of this assignment is to understand how to work with complex JSON data using TypeScript. It focuses on array operations, object manipulation, and extracting meaningful data.
 
-Work with complex JSON data
-Perform array operations
-Modify object properties
-Extract and transform data using TypeScript
-🔷 2. Data Structure Explanation
+Data Structure
 
-The main variable is:
+The main variable used in this assignment is fields.
 
-fields = {
-  Dimensions: [],
-  Measures: [],
-  Details: [],
-  Hierarchies: []
-}
-📌 Meaning:
-Dimensions → descriptive data (City, Country, Date)
-Measures → numerical data (Sales, Profit)
-Details → extra descriptive fields
-Hierarchies → empty (not used here)
+It contains four arrays:
 
-Each item inside these arrays is an object (field).
+Dimensions: Stores descriptive data such as City, Country, Date
+Measures: Stores numerical data such as Sales, Profit
+Details: Stores additional descriptive information
+Hierarchies: Empty in this assignment
 
-🔷 3. Key Concepts Used
-✅ A. Combining Arrays
-let fieldList = [...fields.Details, ...fields.Measures, ...fields.Dimensions, ...fields.Hierarchies];
+Each element inside these arrays is an object with properties like:
 
-👉 Concept: Spread Operator
+entityName
+variableType
+dataType
+datasetId
+Concepts Used
+1. Combining Arrays
 
-Combines multiple arrays into one
-Makes processing easier
-✅ B. Filtering Data
-fieldList.filter(item => item.calculatedFieldKey);
+All arrays are merged into a single array called fieldList using the spread operator.
 
-👉 Concept: filter()
+Purpose:
+To process all data in one place.
 
-Selects only those items that match a condition
-✅ C. Finding and Removing Data
-findIndex() → find position  
-splice() → remove item
+2. Filtering Data
 
-👉 Used to remove "Discount" from list
+The filter() function is used to extract items that contain the key calculatedFieldKey.
 
-✅ D. Updating Object Values
-if (item.entityName === "City")
+Purpose:
+To get only calculated fields.
 
-👉 Used to:
+3. Finding and Removing Elements
+findIndex() is used to locate the position of "Discount"
+splice() is used to remove it
 
-Change isNumericDataType
-Change dataType
-✅ E. Looping Through Data
-forEach()
+Purpose:
+To delete specific unwanted data.
 
-👉 Runs loop on each element
-👉 Used for updates and checks
+4. Updating Object Properties
 
-✅ F. Working with Nested Arrays
-flatMap()
+Looping through fieldList using forEach() and updating:
 
-👉 Extracts inner arrays (variables) and flattens them
+isNumericDataType
+dataType
 
-✅ G. Storing Index Values
-dataIndex.push(i);
+Condition:
+entityName should be "City"
 
-👉 Stores positions of specific items
-👉 Helps in later operations
+5. Extracting Nested Data
 
-✅ H. Checking Index Presence
-dataIndex.includes(i)
+flatMap() is used to extract the variables array from calculated fields.
 
-👉 Checks whether index exists
-👉 Used to print specific values
+Then filter() is used to get only numerical variables.
 
-✅ I. Renaming Object Keys
-item.datasetKey = item.datasetId;
-delete item.datasetId;
+6. Storing Index Values
 
-👉 Used to rename keys manually
+Loop through Dimensions and store indexes where:
 
-✅ J. Updating Nested Objects
-item.mappingDetails.unMappedLocationCount = 5;
+Parent = "Order Date"
 
-👉 Modifies inner object values
+Stored in dataIndex array.
 
-✅ K. Filtering + Transforming Data
-filter() + map()
+7. Using Index for Output
 
-👉 First select required data
-👉 Then modify it
+Check if index exists in dataIndex using includes().
 
-🔷 4. Important Functions Summary
-Function	Purpose
-filter()	Select specific data
-map()	Modify data
-forEach()	Loop through array
-findIndex()	Find position
-splice()	Remove element
-flatMap()	Flatten nested arrays
-🔷 5. Flow of the Assignment
-Create data (fields)
-Combine all arrays → fieldList
+If present, print the corresponding entityName.
+
+8. Renaming Keys
+
+In Measures array:
+
+Add new key datasetKey
+Assign value from datasetId
+Remove datasetId
+9. Updating Nested Object
+
+Find items with:
+
+variableType = "geographical"
+
+Update:
+unMappedLocationCount = 5
+
+10. Filtering and Transforming Data
+
+Filter items where:
+
+isNumericDataType = true
+dataType = float
+
+Then update:
+datasetId = subDatasetId
+
+Store result in NumericalItems.
+
+Functions Used
+filter(): Select specific elements
+map(): Transform data
+forEach(): Loop through array
+findIndex(): Find element position
+splice(): Remove element
+flatMap(): Flatten nested arrays
+Flow of Execution
+Create fields object
+Combine arrays into fieldList
 Extract calculated fields
-Remove unwanted data (Discount)
-Update specific values (City)
-Extract nested variables
-Store indexes based on condition
-Use indexes to print data
-Rename keys
+Remove "Discount"
+Update "City"
+Extract numerical variables
+Store indexes based on Parent
+Print values using index
+Rename datasetId
 Update geographical data
-Filter and transform numerical data
-🔷 6. Real-World Use
+Create NumericalItems array
+Learning Outcome
 
-These concepts are used in:
+After completing this assignment, you will be able to:
 
-API data processing
-Dashboard development
-Backend services
-Data analytics
-Database operations
-🔷 7. Final Learning
+Work with complex data structures
+Perform array and object operations
+Extract and transform data efficiently
+Understand real-world data handling scenarios
+Conclusion
 
-This assignment teaches:
-
-✔ How to handle real-world JSON data
-✔ How to clean and transform data
-✔ How to extract useful information
-✔ How to think logically in coding
+This assignment helps in building strong fundamentals of data manipulation in TypeScript. These concepts are widely used in real-world applications such as backend development, APIs, and data processing systems.
