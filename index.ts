@@ -113,7 +113,7 @@ let NumericalItems = fieldList
   });
 
 
-// Final Output (optional)
+// Final Output
 console.log("Calculated Fields:", calculatedfields);
 console.log("Numerical Variables:", numericalVariables);
 console.log("Numerical Items:", NumericalItems);
